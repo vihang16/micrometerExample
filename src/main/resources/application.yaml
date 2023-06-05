@@ -1,0 +1,9 @@
+spring:
+  config:
+    import:
+  cloud:
+    config:
+      enabled: false
+
+server:
+  port: 8082
