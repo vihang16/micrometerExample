@@ -1,9 +1,32 @@
 spring:
   config:
     import:
+  output:
+    ansi:
+      enabled: always
   cloud:
     config:
       enabled: false
 
 server:
   port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    distribution:
+      percentiles-histogram:
+        greeting: 'true'
+        http:
+          server:
+            requests: 'true'
+  tracing:
+    sampling:
+      probability: '1.0'
+
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'

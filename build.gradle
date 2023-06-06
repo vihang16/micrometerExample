@@ -39,6 +39,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-autoconfigure:3.0.7'
     // https://mvnrepository.com/artifact/io.micrometer/micrometer-observation
     implementation 'io.micrometer:micrometer-observation:1.10.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.1.0'
+    // https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos
+    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.93.Final'
+
 
 
 

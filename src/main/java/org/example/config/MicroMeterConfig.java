@@ -20,11 +20,11 @@ public class MicroMeterConfig {
         return new ObservedAspect(observationRegistry);
     }
 
-    @Bean
+/*    @Bean
     public MeterRegistry meterRegistry() {
         MeterRegistry meterRegistry = Metrics.globalRegistry;
         logger.info("MDC get value:{}", MDC.get("TraceId"));
         meterRegistry.config().commonTags("TraceId", MDC.get("TraceId"));
         return meterRegistry;
-    }
+    }*/
 }
