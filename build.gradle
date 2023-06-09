@@ -24,28 +24,25 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation 'io.micrometer:micrometer-core:1.11.0'
-    implementation( group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0')
-    implementation 'io.zipkin.reporter2:zipkin-reporter-metrics-micrometer:2.16.4'
-    // https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-brave
-    implementation 'io.micrometer:micrometer-tracing-bridge-brave:1.1.1'
-    // https://mvnrepository.com/artifact/io.zipkin.reporter2/zipkin-reporter-brave
-    implementation 'io.zipkin.reporter2:zipkin-reporter-brave:2.16.4'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-webflux:3.0.5'
-    implementation 'org.springframework.cloud:spring-cloud-starter-config:4.0.1'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure:3.0.7'
-    // https://mvnrepository.com/artifact/io.micrometer/micrometer-observation
-    implementation 'io.micrometer:micrometer-observation:1.10.0'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
-    implementation 'org.springframework.boot:spring-boot-starter-aop:3.1.0'
-    // https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos
     implementation 'io.netty:netty-resolver-dns-native-macos:4.1.93.Final'
+    implementation group: 'io.netty', name: 'netty-resolver-dns-classes-macos', version: '4.1.93.Final'
+// AOP is needed for the `Observed` annotation
+    implementation 'org.springframework.boot:spring-boot-starter-aop' // 1
 
+// Tracing dependencies after Spring Boot 3
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave' // 2
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-
+// Without this dependency actuator does not provide a /actuator/prometheus endpoint.
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.20'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    // Default is Brave + Zipkin, you can opt in via "-Pwavefront" to Wavefront and "-Potel" for OTel
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 
 }
 

@@ -30,3 +30,7 @@ management:
 logging:
   pattern:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+  org:
+    springframework:
+      web: DEBUG
+  file: /Users/vihangshah/sampledebug.log
